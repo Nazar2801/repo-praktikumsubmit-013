@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Tugas Praktikum | Cloud Computing</title>
+    <!-- Import Google Font Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #ff85a2 0%, #f06292 100%);
+            --bg-color: #fce4ec;
+            --glass-white: rgba(255, 255, 255, 0.9);
+            --text-dark: #4a4a4a;
+            --accent-pink: #f06292;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--bg-color);
+            background: linear-gradient(45deg, #fce4ec 0%, #ffd1dc 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Container Glassmorphism */
+        .container {
+            background: var(--glass-white);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(240, 98, 146, 0.15);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        h2 {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 1.8rem;
+        }
+
+        p.subtitle {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 1.2rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding-left: 5px;
+        }
+
+        input[type="text"], 
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #f2f2f2;
+            border-radius: 12px;
+            background-color: #f9f9f9;
+            color: #333;
+            outline: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        input[type="text"]:focus, 
+        select:focus {
+            border-color: var(--primary-pink);
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(255, 133, 162, 0.2);
+        }
+
+        /* Styling Custom File Upload */
+        .file-upload-wrapper {
+            position: relative;
+            background: #fff;
+            border: 2px dashed #ffc1d1;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .file-upload-wrapper:hover {
+            background: #fff9fa;
+            border-color: var(--accent-pink);
+        }
+
+        input[type="file"] {
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        button {
+            width: 100%;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 15px;
+            box-shadow: 0 10px 20px rgba(240, 98, 146, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(240, 98, 146, 0.4);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        .footer {
+            margin-top: 25px;
+            font-size: 0.75rem;
+            color: #b0b0b0;
+            letter-spacing: 0.5px;
+        }
+
+        /* Dekorasi tambahan */
+        .dot {
+            height: 10px;
+            width: 10px;
+            background-color: var(--primary-pink);
+            border-radius: 50%;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="dot"></div>
+    <h2>Portal Praktikum</h2>
+    <p class="subtitle">Silakan isi formulir untuk mengirim tugas Anda</p>
+    
+    <form action="/submit-task" method="POST" enctype="multipart/form-data">
+        
+        <div class="form-group">
+            <label>NIM Mahasiswa</label>
+            <input type="text" name="nim" placeholder="Contoh: 0920240052" required>
+        </div>
+
+        <div class="form-group">
+            <label>Nama Lengkap</label>
+            <input type="text" name="name" placeholder="Masukkan nama lengkap" required>
+        </div>
+
+        <div class="form-group">
+            <label>Kelas</label>
+            <input type="text" name="class_name" placeholder="Contoh: TRPL 2A" required>
+        </div>
+
+        <div class="form-group">
+            <label>Mata Kuliah</label>
+            <select name="course">
+                <option value="" disabled selected>Pilih Mata Kuliah</option>
+                <option value="Cloud Computing">Cloud Computing</option>
+                <option value="Pemrograman Web">Mobile Programming</option>
+                <option value="Microservices">Machine Learning</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Upload File Tugas</label>
+            <div class="file-upload-wrapper">
+                <input type="file" name="file_tugas" required>
+            </div>
+        </div>
+
+        <button type="submit">Kirim Tugas Sekarang</button>
+    </form>
+
+    <div class="footer">
+        Powered by <b>Azure Cloud Service</b>
+    </div>
+</div>
+
+</body>
+</html>
